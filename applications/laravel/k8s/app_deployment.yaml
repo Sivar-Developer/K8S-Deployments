@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-application
+  template:
+    metadata:
+      labels:
+        app: web-application
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /metrics
+        prometheus.io/port: "80"
+    spec:
+      volumes:
+        - name: logs
+          emptyDir: {}
+        - name: views
+          emptyDir: {}
+      securityContext:
+        fsGroup: 82
+      initContainers:
+        - name: database-migrations
+          image: fragmatica/backend:latest
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: application-config
+            - secretRef:
+                name: application-secret
+          command:
+            - "php"
+          args:
+            - "artisan"
+            - "migrate"
+            - "--force"
+      containers:
+        - name: nginx
+          imagePullPolicy: IfNotPresent
+          image: fragmatica/frontend:1.0.0
+          resources: {}
+          # limits:
+          #   cpu: 500m
+          #   memory: 50M
+          ports:
+            - containerPort: 80
+        - name: fpm
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: application-config
+            - secretRef:
+                name: application-secret
+          securityContext:
+            runAsUser: 82
+            readOnlyRootFilesystem: true
+          volumeMounts:
+            - name: logs
+              mountPath: /var/www/html/storage/logs
+            - name: views
+              mountPath: /var/www/html/storage/framework/views
+          resources: {}
+          image: fragmatica/backend:latest
+          ports:
+            - containerPort: 9000
