@@ -10,3 +10,9 @@
 
 
 ### Kubernetes Deployment
+
+#### Applications Setup
+- [Laravel](applications/laravel/setup.md)
+
+#### Servers Setup
+- [Bare Metal](servers/bare-metal/setup.md)
