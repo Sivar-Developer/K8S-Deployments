@@ -8,7 +8,7 @@ spec:
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain # Set according to your requirements
-  storageClassName: demo-storage # Name of your storage class
+  storageClassName: mongodb-storage # Name of your storage class
   hostPath:
-    path: /var/www/storage # Path on your dedicated server
+    path: /var/www/storage/mongodb # Path on your dedicated server
 

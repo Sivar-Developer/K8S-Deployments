@@ -73,6 +73,8 @@ spec:
 ```
 Check if the setup was ready `kubectl get pvc`
 
+4. Bind PVC to PV: `kubectl patch persistentvolumeclaim mongo-pvc -p '{"spec": {"volumeName": "mongo-pv"}}'`
+
 
 ### Deployment
 1. Deployment: run `kubectl apply -f deployment.yaml`
