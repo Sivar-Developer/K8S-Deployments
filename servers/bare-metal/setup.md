@@ -36,8 +36,7 @@ Kubernetes cluster on bare metal is a good choice. challenges of bare-metal are,
 
 **Below step apply only on Master node**
 
-13. sudo kubeadm init --pod-network-cidr=192.168.0.0/16
-13. or sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+13. sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 
 14. mkdir -p $HOME/.kube
 
