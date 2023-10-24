@@ -30,13 +30,14 @@ Kubernetes cluster on bare metal is a good choice. challenges of bare-metal are,
 
 11. sudo hostnamectl set-hostname kmaster
 
-**Below step apply onlyon Worker node**
+**Below step apply only on Worker node**
 
 12. sudo hostnamectl set-hostname kworker
 
-** Below step apply only on Master node**
+**Below step apply only on Master node**
 
-13. sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+13. sudo kubeadm init --pod-network-cidr=192.168.0.0/16
+13. or sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 
 14. mkdir -p $HOME/.kube
 
