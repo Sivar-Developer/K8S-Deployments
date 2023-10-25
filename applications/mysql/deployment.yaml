@@ -6,8 +6,6 @@ spec:
   selector:
     matchLabels:
       app: mysql
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:
@@ -24,12 +22,14 @@ spec:
           value: forge
         - name: MYSQL_PASSWORD
           value: c3FsaGFyZFBhc3MxMjM=
+        - name: MYSQL_DATABASE
+          value: application
         ports:
         - containerPort: 3306
           name: mysql
         volumeMounts:
         - name: mysql-storage
-          mountPath: /var/lib/mysql
+          mountPath: /var/www/storage/mysql
       volumes:
       - name: mysql-storage
         persistentVolumeClaim:

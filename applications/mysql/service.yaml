@@ -3,6 +3,13 @@ kind: Service
 metadata:
   name: mysql-svc
 spec:
+  clusterIP: 10.108.174.179
+  clusterIPs:
+  - 10.108.174.179
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
   ports:
     - port: 3306
   selector:
