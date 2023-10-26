@@ -14,6 +14,7 @@ Kubernetes is an open-source container orchestration system for automating softw
 
 #### Applications Setup
 - [Laravel](applications/laravel/setup.md)
+- [Wordpress](applications/wordpress/setup.md)
 - [MongoDB](applications/mongodb/setup.md)
 
 #### Servers Setup
